@@ -1,24 +1,24 @@
 package com.juanex.productofinanciero_service_challengebackend.controller;
 
+import com.juanex.productofinanciero_service_challengebackend.dto.ProductoFinancieroDTO;
 import com.juanex.productofinanciero_service_challengebackend.model.ProductoFinanciero;
-import com.juanex.productofinanciero_service_challengebackend.service.ProductoFinancieroService;
+import com.juanex.productofinanciero_service_challengebackend.service.impl.ProductoFinancieroServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
+@RequiredArgsConstructor
 public class ProductoFinancieroController {
 
-    private ProductoFinancieroService service;
-
-    public ProductoFinancieroController(ProductoFinancieroService service) {
-        this.service = service;
-    }
+    private final ProductoFinancieroServiceImpl service;
 
     @GetMapping("/cliente/{codigo}")
-    public List<ProductoFinanciero> obtenerProductos(@PathVariable String codigo){
-        return service.obtenerProductosFinancierosPorCliente(codigo);
+    public ResponseEntity<List<ProductoFinancieroDTO>> obtenerProductos(@PathVariable String codigo){
+           return ResponseEntity.ok(service.obtenerProductosFinancierosPorCliente(codigo));
     }
 
     @PostMapping
