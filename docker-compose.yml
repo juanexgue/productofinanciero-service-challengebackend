@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql-productofinanciero:
+    image: mysql:8
+    container_name: mysql-productofinanciero
+    restart: always
+    environment:
+      MYSQL_DATABASE: productofinancierodb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-productofinanciero-data:/var/lib/mysql
+
+  productofinanciero-service:
+    build: .
+    container_name: productofinanciero-service
+    depends_on:
+      - mysql-productofinanciero
+    environment:
+      DB_URL: jdbc:mysql://mysql-productofinanciero:3306/productofinancierodb?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER_NAME: root
+      DB_PASSWORD: root
+    ports:
+      - "8082:8080"
+
+volumes:
+  mysql-productofinanciero-data:
