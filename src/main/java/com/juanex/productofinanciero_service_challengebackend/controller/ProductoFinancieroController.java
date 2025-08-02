@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoFinancieroController {
+
     private ProductoFinancieroService service;
 
     public ProductoFinancieroController(ProductoFinancieroService service) {

@@ -15,7 +15,7 @@ public class ProductoFinancieroService {
     }
 
     public List<ProductoFinanciero> obtenerProductosFinancierosPorCliente(String clienteCodigo) {
-        return repository.findByClienteCodigo(clienteCodigo);
+          return repository.findByClienteCodigo(clienteCodigo);
     }
 
     public ProductoFinanciero guardar(ProductoFinanciero productoFinanciero) {

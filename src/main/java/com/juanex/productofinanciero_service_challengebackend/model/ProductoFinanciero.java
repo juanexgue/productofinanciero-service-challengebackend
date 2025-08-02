@@ -1,7 +1,13 @@
 package com.juanex.productofinanciero_service_challengebackend.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductoFinanciero {
 
     @Id
